@@ -1,5 +1,5 @@
 let focusBtn = document.getElementById('focus');
-let buttons = document.querySelectorAll('buttons');
+let buttons = document.querySelectorAll('.button');
 let shortBreakBtn = document.getElementById('shortbreak');
 let longBreakBtn = document.getElementById('longbreak');
 let startBtn = document.getElementById('start');
@@ -25,4 +25,23 @@ const removeFocus = () => {
 focusBtn.addEventListener('click', () => {
   removeFocus();
   focusBtn.classList.add('focus');
+});
+
+shortBreakBtn.addEventListener('click', () => {
+  removeFocus();
+  shortBreakBtn.classList.add('focus');
+});
+
+longBreakBtn.addEventListener('click', () => {
+  removeFocus();
+  longBreakBtn.classList.add('focus');
+});
+
+startBtn.addEventListener('click', () => {
+  startBtn.classList.remove('show');
+  startBtn.classList.add('hide');
+  pauseBtn.classList.remove('hide');
+  restartBtn.classList.remove('hide');
+  pauseBtn.classList.add('show');
+  restartBtn.classList.add('show');
 });
