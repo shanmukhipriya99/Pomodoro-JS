@@ -15,3 +15,14 @@ let minCount = 25;
 mins.textContent = minCount;
 
 restartBtn.addEventListener('click', () => {});
+
+const removeFocus = () => {
+  buttons.forEach((btn) => {
+    btn.classList.remove('focus');
+  });
+};
+
+focusBtn.addEventListener('click', () => {
+  removeFocus();
+  focusBtn.classList.add('focus');
+});
