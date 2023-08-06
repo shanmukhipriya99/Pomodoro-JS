@@ -16,9 +16,17 @@ let set;
 mins.textContent = (minCount + 1).toString().padStart(2, '0');
 
 restartBtn.addEventListener('click', () => {
-  startBtn.classList.remove('hide');
-  pauseBtn.classList.add('hide');
-  restartBtn.classList.add('hide');
+  let focusedID = document.querySelector('.focus').id;
+  count = 59;
+  if (focusedID == 'focus') {
+    minCount = 24;
+  } else if (focusedID == 'shortbreak') {
+    minCount = 4;
+  } else if (minCount == 'longbreak') {
+    minCount = 9;
+  }
+    mins.textContent = (minCount + 1).toString().padStart(2, '0');
+    secs.textContent = '00';
 });
 
 const removeFocus = () => {
@@ -33,6 +41,7 @@ focusBtn.addEventListener('click', () => {
   minCount = 24;
   count = 59;
   mins.textContent = (minCount + 1).toString().padStart(2, '0');
+  secs.textContent = '00';
 });
 
 shortBreakBtn.addEventListener('click', () => {
@@ -41,6 +50,7 @@ shortBreakBtn.addEventListener('click', () => {
   minCount = 4;
   count = 59;
   mins.textContent = (minCount + 1).toString().padStart(2, '0');
+  secs.textContent = '00';
 });
 
 longBreakBtn.addEventListener('click', () => {
@@ -49,6 +59,7 @@ longBreakBtn.addEventListener('click', () => {
   minCount = 9;
   count = 59;
   mins.textContent = (minCount + 1).toString().padStart(2, '0');
+  secs.textContent = '00';
 });
 
 startBtn.addEventListener('click', () => {
