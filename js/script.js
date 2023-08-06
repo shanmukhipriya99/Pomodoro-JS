@@ -10,15 +10,13 @@ let secs = document.querySelector('.secs');
 
 let count = 59;
 let paused = true;
-let minCount = 25;
+let minCount = 24;
+let set;
 
-mins.textContent = minCount;
+mins.textContent = (minCount + 1).toString().padStart(2, '0');
 
 restartBtn.addEventListener('click', () => {
   startBtn.classList.remove('hide');
-  startBtn.classList.add('show');
-  pauseBtn.classList.remove('show');
-  restartBtn.classList.remove('show');
   pauseBtn.classList.add('hide');
   restartBtn.classList.add('hide');
 });
@@ -32,43 +30,57 @@ const removeFocus = () => {
 focusBtn.addEventListener('click', () => {
   removeFocus();
   focusBtn.classList.add('focus');
-  minCount = 25;
-  mins.textContent = minCount.toString().padStart(2, '0');
-  startTimer(minCount, 24);
+  minCount = 24;
+  count = 59;
+  mins.textContent = (minCount + 1).toString().padStart(2, '0');
 });
 
 shortBreakBtn.addEventListener('click', () => {
   removeFocus();
   shortBreakBtn.classList.add('focus');
-  minCount = 5;
-  mins.textContent = minCount.toString().padStart(2, '0');
-  startTimer(minCount, 4);
+  minCount = 4;
+  count = 59;
+  mins.textContent = (minCount + 1).toString().padStart(2, '0');
 });
 
 longBreakBtn.addEventListener('click', () => {
   removeFocus();
   longBreakBtn.classList.add('focus');
-  minCount = 10;
-  mins.textContent = minCount.toString().padStart(2, '0');
-  startTimer(minCount, 9);
+  minCount = 9;
+  count = 59;
+  mins.textContent = (minCount + 1).toString().padStart(2, '0');
 });
 
 startBtn.addEventListener('click', () => {
-  startBtn.classList.remove('show');
   startBtn.classList.add('hide');
   pauseBtn.classList.remove('hide');
   restartBtn.classList.remove('hide');
-  pauseBtn.classList.add('show');
-  restartBtn.classList.add('show');
+  startTimer();
 });
 
 pauseBtn.addEventListener('click', () => {
   startBtn.classList.remove('hide');
-  startBtn.classList.add('show');
-  pauseBtn.classList.remove('show');
-  restartBtn.classList.remove('show');
   pauseBtn.classList.add('hide');
   restartBtn.classList.add('hide');
 });
 
-const startTimer = (mins, count) => {};
+const startTimer = () => {
+  if (paused) {
+    paused = false;
+    mins.textContent = minCount.toString().padStart(2, '0');
+    secs.textContent = count.toString().padStart(2, '0');
+    set = setInterval(() => {
+      count--;
+      mins.textContent = minCount.toString().padStart(2, '0');
+      secs.textContent = count.toString().padStart(2, '0');
+      if (count == 0) {
+        if (minCount != 0) {
+          minCount--;
+          count = 60;
+        } else {
+          clearInterval(set);
+        }
+      }
+    }, 1000);
+  }
+};
