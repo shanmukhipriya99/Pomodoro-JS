@@ -14,7 +14,14 @@ let minCount = 25;
 
 mins.textContent = minCount;
 
-restartBtn.addEventListener('click', () => {});
+restartBtn.addEventListener('click', () => {
+  startBtn.classList.remove('hide');
+  startBtn.classList.add('show');
+  pauseBtn.classList.remove('show');
+  restartBtn.classList.remove('show');
+  pauseBtn.classList.add('hide');
+  restartBtn.classList.add('hide');
+});
 
 const removeFocus = () => {
   buttons.forEach((btn) => {
@@ -25,16 +32,20 @@ const removeFocus = () => {
 focusBtn.addEventListener('click', () => {
   removeFocus();
   focusBtn.classList.add('focus');
+  mins.textContent = 25;
 });
 
 shortBreakBtn.addEventListener('click', () => {
   removeFocus();
   shortBreakBtn.classList.add('focus');
+  minCount = 5;
+  mins.textContent = minCount.toString().padStart(2, '0');
 });
 
 longBreakBtn.addEventListener('click', () => {
   removeFocus();
   longBreakBtn.classList.add('focus');
+  mins.textContent = 10;
 });
 
 startBtn.addEventListener('click', () => {
@@ -45,3 +56,9 @@ startBtn.addEventListener('click', () => {
   pauseBtn.classList.add('show');
   restartBtn.classList.add('show');
 });
+
+pauseBtn.addEventListener('click', () => {})
+
+const startTimer = (mins) => {
+    
+}
