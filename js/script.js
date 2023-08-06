@@ -25,8 +25,8 @@ restartBtn.addEventListener('click', () => {
   } else if (minCount == 'longbreak') {
     minCount = 9;
   }
-    mins.textContent = (minCount + 1).toString().padStart(2, '0');
-    secs.textContent = '00';
+  mins.textContent = (minCount + 1).toString().padStart(2, '0');
+  secs.textContent = '00';
 });
 
 const removeFocus = () => {
@@ -37,6 +37,10 @@ const removeFocus = () => {
 
 focusBtn.addEventListener('click', () => {
   removeFocus();
+  clearInterval(set);
+  startBtn.classList.remove('hide');
+  pauseBtn.classList.add('hide');
+  restartBtn.classList.add('hide');
   focusBtn.classList.add('focus');
   minCount = 24;
   count = 59;
@@ -46,6 +50,10 @@ focusBtn.addEventListener('click', () => {
 
 shortBreakBtn.addEventListener('click', () => {
   removeFocus();
+  clearInterval(set);
+  startBtn.classList.remove('hide');
+  pauseBtn.classList.add('hide');
+  restartBtn.classList.add('hide');
   shortBreakBtn.classList.add('focus');
   minCount = 4;
   count = 59;
@@ -55,6 +63,10 @@ shortBreakBtn.addEventListener('click', () => {
 
 longBreakBtn.addEventListener('click', () => {
   removeFocus();
+  clearInterval(set);
+  startBtn.classList.remove('hide');
+  pauseBtn.classList.add('hide');
+  restartBtn.classList.add('hide');
   longBreakBtn.classList.add('focus');
   minCount = 9;
   count = 59;
