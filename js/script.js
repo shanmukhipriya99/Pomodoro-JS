@@ -16,6 +16,7 @@ let set;
 mins.textContent = (minCount + 1).toString().padStart(2, '0');
 
 restartBtn.addEventListener('click', () => {
+  pauseTimer();
   let focusedID = document.querySelector('.focus').id;
   count = 59;
   if (focusedID == 'focus') {
@@ -37,11 +38,8 @@ const removeFocus = () => {
 
 focusBtn.addEventListener('click', () => {
   removeFocus();
-  clearInterval(set);
-  startBtn.classList.remove('hide');
-  pauseBtn.classList.add('hide');
-  restartBtn.classList.add('hide');
   focusBtn.classList.add('focus');
+  pauseTimer();
   minCount = 24;
   count = 59;
   mins.textContent = (minCount + 1).toString().padStart(2, '0');
@@ -50,11 +48,8 @@ focusBtn.addEventListener('click', () => {
 
 shortBreakBtn.addEventListener('click', () => {
   removeFocus();
-  clearInterval(set);
-  startBtn.classList.remove('hide');
-  pauseBtn.classList.add('hide');
-  restartBtn.classList.add('hide');
   shortBreakBtn.classList.add('focus');
+  pauseTimer();
   minCount = 4;
   count = 59;
   mins.textContent = (minCount + 1).toString().padStart(2, '0');
@@ -63,11 +58,8 @@ shortBreakBtn.addEventListener('click', () => {
 
 longBreakBtn.addEventListener('click', () => {
   removeFocus();
-  clearInterval(set);
-  startBtn.classList.remove('hide');
-  pauseBtn.classList.add('hide');
-  restartBtn.classList.add('hide');
   longBreakBtn.classList.add('focus');
+  pauseTimer();
   minCount = 9;
   count = 59;
   mins.textContent = (minCount + 1).toString().padStart(2, '0');
@@ -81,11 +73,16 @@ startBtn.addEventListener('click', () => {
   startTimer();
 });
 
-pauseBtn.addEventListener('click', () => {
-  startBtn.classList.remove('hide');
-  pauseBtn.classList.add('hide');
-  restartBtn.classList.add('hide');
-});
+pauseBtn.addEventListener(
+  'click',
+  (pauseTimer = () => {
+    paused = true;
+    clearInterval(set);
+    startBtn.classList.remove('hide');
+    pauseBtn.classList.add('hide');
+    restartBtn.classList.add('hide');
+  })
+);
 
 const startTimer = () => {
   if (paused) {
